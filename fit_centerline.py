@@ -9,7 +9,7 @@ from skimage.feature import canny
 from skimage.morphology import skeletonize
 from scipy.interpolate import CubicSpline
 from graph_util import FindCycle
-from pixel2point import pixels2points, points2pixels, getPixelsFromFile
+from pixel2point import pixels2points, points2pixels
 from matplotlib import pyplot as plt
 from tkinter import Tk
 from tkinter.filedialog import askopenfile, askdirectory
@@ -17,7 +17,6 @@ from tkinter.filedialog import askopenfile, askdirectory
 def imageFromFile(pgmf):
 
     if pgmf is None:
-        Tk().withdraw()
         pgmf = askopenfile(mode='rb', filetypes=[('PGM Files', '*.pgm')], title='Select PGM Track Image File')
 
     if pgmf is None:
@@ -161,6 +160,7 @@ if __name__=='__main__':
     subsample_period = args.subsample_period
     
     # Get track image and info from file
+    Tk().withdraw()
     image, depth, name = imageFromFile(args.pgm_path)
     resolution, origin = infoFromFile(args.yaml_path)
 
