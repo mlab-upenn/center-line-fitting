@@ -149,7 +149,6 @@ def subsample(image, cycle, period):
     return image, subsampled_cycle
 
 if __name__=='__main__':
-    Tk().withdraw()
     parser = argparse.ArgumentParser(description='Fits a center-line to a closed track.')
     parser.add_argument('--pgm_path', help='file path to the pgm track image file', nargs='?', type=argparse.FileType('rb'), default=None)
     parser.add_argument('--yaml_path', help='file path to the yaml track info file', nargs='?', type=argparse.FileType('r'), default=None)
