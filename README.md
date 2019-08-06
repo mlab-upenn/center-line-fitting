@@ -53,7 +53,7 @@ Clone the repository and run the center-line-fitting script:
 ```
 git clone https://github.com/mlab-upenn/center-line-fitting.git
 cd center-line-fitting
-python center-line-fitting.py
+python src/fit_centerline.py
 ```
 
 ## Plots
