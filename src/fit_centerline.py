@@ -214,4 +214,5 @@ if __name__=='__main__':
     print("Finished. Output saved to", output_path)
 
     # Display Plots
-    plt.show()
+    if plot_mode > 0:
+        plt.show()
