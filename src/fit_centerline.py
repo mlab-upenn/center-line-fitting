@@ -4,10 +4,10 @@ import sys
 import os
 import numpy as np
 import yaml
+
 from sklearn.cluster import DBSCAN
 from skimage.feature import canny
 from skimage.morphology import skeletonize
-from scipy.interpolate import CubicSpline
 from graph_util import FindCycle
 from pixel2point import pixels2points, points2pixels
 from matplotlib import pyplot as plt
