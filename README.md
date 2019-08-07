@@ -1,7 +1,7 @@
 # center-line-fitting
 Takes track images output by SLAM and outputs points along the center-line in a csv file.
 
-![image](https://user-images.githubusercontent.com/8052622/62552918-6e531d00-b83c-11e9-8702-9aae2c749327.png)
+![image](https://user-images.githubusercontent.com/8052622/62645450-3e7a4700-b91a-11e9-846e-29a0dad7f218.png)
 
 ## Prerequisites
 Get track image and info files from [Cartographer](https://github.com/googlecartographer) or some other SLAM tool. The image file should be in pgm format and the info file should be in yaml format. Here is an example track pgm and yaml combination:
@@ -75,5 +75,7 @@ You can change the subsampling period as follows:
 python center-line-fitting.py --subsample_period 20
 ```
 This changes how sparesly the points are sampled from the center-line path
-##### e.g. subsample_period = 20
+##### subsample_period = 20
 ![image](https://user-images.githubusercontent.com/8052622/62555068-44035e80-b840-11e9-9fe8-1cfba5de01db.png)
+##### subsample_period = 6
+![image](https://user-images.githubusercontent.com/8052622/62552918-6e531d00-b83c-11e9-8702-9aae2c749327.png)
