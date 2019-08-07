@@ -4,6 +4,7 @@ import sys
 import os
 import numpy as np
 import yaml
+import math
 
 from sklearn.cluster import DBSCAN
 from skimage.feature import canny
@@ -85,8 +86,18 @@ def plotExtra(image, title, plot_mode):
     if plot_mode > 1:
         plot(image, title, plot_mode)
 
-def denoise(image, depth):
-    db_scan = DBSCAN(eps=1, min_samples=3)
+def pixelsInCircle(radius):
+    num = 0
+    for i in range(100000):
+        num += math.floor(radius**2. / (4.*i + 1.)) - math.floor(radius**2. / (4.*i + 3.))
+    num *= 4
+    num += 1
+    return num
+
+def denoise(image, depth, plot_mode):
+
+    radius = 7
+    db_scan = DBSCAN(eps=radius, min_samples=pixelsInCircle(radius))
 
     points = pixels2points(image, False)
 
@@ -103,6 +114,8 @@ def denoise(image, depth):
     image = points2pixels(points, width, height, depth, False)
 
     negative_points = pixels2points(image, True)
+
+    db_scan = DBSCAN(eps=1, min_samples=3)
 
     clusters = db_scan.fit(negative_points).labels_
     cluster_sizes = np.bincount(clusters + 1)
@@ -164,13 +177,15 @@ if __name__=='__main__':
     image, depth, name = imageFromFile(args.pgm_path)
     resolution, origin = infoFromFile(args.yaml_path)
 
+    print(resolution)
+
     start_time = time.time()
 
     plot(image, "Original Image", plot_mode)
 
     # Denoise image
     print("Denoising")
-    image = denoise(image, depth)
+    image = denoise(image, depth, plot_mode)
     denoised = image
 
     plotExtra(image, "Denoised", plot_mode)
